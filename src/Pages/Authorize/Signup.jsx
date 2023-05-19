@@ -5,7 +5,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 const Signup = () => {
     const [error, setError] = useState(null);
     const { createUser } = useContext(AuthContext);
-    const handleSignin = event => {
+    const handleSignup = event => {
         event.preventDefault();
         const form = event.target;
         const displayName = form.name.value;
@@ -34,9 +34,9 @@ const Signup = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl text-center font-bold">SignUp now!</h1>
-                    <p className="py-6">Discover a world of enchanting dolls. Sign in to our doll shop and unlock a realm of imagination and joy. Join us today to bring smiles and create cherished memories with our exquisite collection.</p>
+                    <p className="py-6">Discover a world of enchanting dolls. SignUp to our doll shop and unlock a realm of imagination and joy. Join us today to bring smiles and create cherished memories with our exquisite collection.</p>
                 </div>
-                <form onSubmit={handleSignin} className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
+                <form onSubmit={handleSignup} className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
                     <div className="card-body">
                         <div className="form-control">
                             <label className="label">
