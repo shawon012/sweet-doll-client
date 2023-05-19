@@ -1,11 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import app from "../firebase/firebase.config";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-
-
+import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
-const auth = getAuth(app)
+const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -14,20 +12,20 @@ const AuthProvider = ({ children }) => {
 
     const createUser = (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password)
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const signIn = (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     const googleSignIn = () => {
         setLoading(true);
-        return signInWithPopup(auth, googleProvider)
+        return signInWithPopup(auth, googleProvider);
     }
 
-    const logout = () => {
+    const logOut = () => {
         setLoading(true);
         return signOut(auth);
     }
@@ -35,49 +33,48 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            console.log('currrent user', currentUser);
+            console.log('current user', currentUser);
             setLoading(false);
-            if (currentUser && currentUser.email) {
+            if(currentUser && currentUser.email){
                 const loggedUser = {
                     email: currentUser.email
                 }
-                fetch('https://sweet-doll-server.vercel.app/jwt', {
-                    method: 'POST',
+                fetch(' https://sweet-doll-server.vercel.app/jwt', {
+                    method: 'POST', 
                     headers: {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify(loggedUser)
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log('response data', data);
-                        localStorage.setItem('shop-token', data.token);
-                    })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('jwt response', data);
+                    localStorage.setItem('shop-token', data.token);
+                })
             }
-            else {
-                localStorage.removeItem('shop-token')
+            else{
+                localStorage.removeItem('shop-token');
             }
-        })
+        });
         return () => {
             return unsubscribe();
         }
     }, [])
 
-
     const authInfo = {
         user,
         loading,
-        createUser,
-        signIn,
+        createUser, 
+        signIn, 
         googleSignIn,
-        logout
+        logOut
     }
 
-    return(
-        <AuthProvider.Provider value={authInfo}>
+    return (
+        <AuthContext.Provider value={authInfo}>
             {children}
-        </AuthProvider.Provider>
-    )
-}
+        </AuthContext.Provider>
+    );
+};
 
 export default AuthProvider;
