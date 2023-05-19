@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
@@ -10,9 +10,27 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
-    const createUser = (email, password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+    // const createUser = (email, password) => {
+    //     setLoading(true);
+    //     return createUserWithEmailAndPassword(auth, email, password);
+    // }
+
+    const createUser = (email, password, photoURL, displayName) => {
+        setLoading(true)
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                updateProfile(user, { displayName: displayName, photoURL: photoURL })
+                    .then(() => {
+                        // Profile data updated successfully
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
     }
 
     const signIn = (email, password) => {
@@ -35,24 +53,24 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             console.log('current user', currentUser);
             setLoading(false);
-            if(currentUser && currentUser.email){
+            if (currentUser && currentUser.email) {
                 const loggedUser = {
                     email: currentUser.email
                 }
                 fetch(' https://sweet-doll-server.vercel.app/jwt', {
-                    method: 'POST', 
+                    method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify(loggedUser)
                 })
-                .then(res => res.json())
-                .then(data => {
-                    console.log('jwt response', data);
-                    localStorage.setItem('shop-token', data.token);
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('jwt response', data);
+                        localStorage.setItem('shop-token', data.token);
+                    })
             }
-            else{
+            else {
                 localStorage.removeItem('shop-token');
             }
         });
@@ -64,8 +82,8 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         loading,
-        createUser, 
-        signIn, 
+        createUser,
+        signIn,
         googleSignIn,
         logOut
     }

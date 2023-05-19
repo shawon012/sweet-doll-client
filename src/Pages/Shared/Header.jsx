@@ -4,6 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 const Header = () => {
     const { user } = useContext(AuthContext);
+    console.log('users name', user?.displayName, user?.photoURL )
     return (
         <div className="navbar  flex justify-between align-middle pl-11 pr-11 bg-red-100">
             <div >
@@ -29,10 +30,10 @@ const Header = () => {
             <div >
                 <div>
                     {user ? (
-
+                        
                         <div className='flex gap-3'>
-                            <div className="w-10 rounded-full avatar tooltip" data-tip={user.name}>
-                                <img className='rounded border-spacing-1 border-slate-400' src={user.photoURL} />
+                            <div className="w-12 h-12 avatar tooltip tooltip-bottom" data-tip={user.displayName}>
+                                <img className='rounded-full border-spacing-1 border-slate-400' src={user.photoURL} />
                             </div>
                             <div><button className='btn btn-secondary'>Logout</button></div>
                         </div>
