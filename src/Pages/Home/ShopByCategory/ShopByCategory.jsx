@@ -30,7 +30,7 @@ const ShopByCategory = () => {
     };
     return (
 
-        <div>
+        <div className='hover:bg-blue-200'>
             <div>
                 <h3 className="text-center text-7xl  pt-8 pb-8">Shop By Category</h3>
             </div>
