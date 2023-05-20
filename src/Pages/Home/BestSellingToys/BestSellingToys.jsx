@@ -2,9 +2,9 @@ import React from 'react';
 
 const BestSellingToys = () => {
     return (
-        <div className=' mt-6 bg-amber-100 hover:bg-lime-100'>
+        <div className=' mt-6 pb-7 bg-amber-100 hover:bg-lime-100'>
             <div>
-                <h3 className="text-center text-7xl  pt-8 pb-8">Best Selling Toys</h3>
+                <h3 className="text-center text-7xl  pt-8 pb-8 hover:text-cyan-800">Best Selling Toys</h3>
             </div>
             <div className='flex justify-around'>
                 <div className="card w-96 bg-base-100 shadow-xl">
