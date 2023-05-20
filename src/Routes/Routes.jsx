@@ -9,6 +9,7 @@ import AddaToy from "../Toys/AddaToy/AddaToy";
 import MyToys from "../Toys/MyToys/MyToys";
 import Notfound from "../Notfound/Notfound";
 import Blog from "../Toys/Blog/Blog";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -31,7 +32,8 @@ const router = createBrowserRouter([
         },
         {
             path: 'products/:id',
-            element: <SingleToy></SingleToy>
+            element: <PrivateRoute><SingleToy></SingleToy></PrivateRoute>,
+            loader: ({params}) => fetch(`https://sweet-doll-server.vercel.app/products/${params.id}`)
         },
         {
             path: 'products',

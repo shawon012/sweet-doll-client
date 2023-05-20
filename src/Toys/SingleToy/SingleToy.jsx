@@ -1,6 +1,7 @@
 import React from 'react';
 
 const SingleToy = () => {
+    
     return (
         <div>
             

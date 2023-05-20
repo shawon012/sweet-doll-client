@@ -1,29 +1,42 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState(null);
     const { signIn } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        if (!email || !password ) {
+        if (!email || !password) {
             setError('Please fill up all fields.');
             return;
         }
 
         signIn(email, password)
+            .then(result => {
+                // const user = result.user;
+                console.log(result);
+                navigate(from, { replace: true })
+
+
+
+            })
+            .catch(error => console.log(error));
+
     }
     return (
         <div className="hero pb-20 pt-5 bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse mt-5">
                 <form onSubmit={handleLogin} className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
                     <div className="card-body">
-                       
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -36,13 +49,13 @@ const Login = () => {
                             </label>
                             <input type="password" placeholder="password" name='password' className="input input-bordered" />
                         </div>
-                        
+
                         <div>
                             <p><small>Are You A New User? Please <Link to='/signUp'>SignUp Now!</Link></small></p>
                             {error && <p className='text-danger'>{error}</p>}
                         </div>
                         <div className="form-control mt-6">
-                            <button  className="btn btn-primary">LogIn</button>
+                            <button className="btn btn-primary">LogIn</button>
                         </div>
                     </div>
                 </form>
