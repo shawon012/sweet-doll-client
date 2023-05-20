@@ -57,7 +57,8 @@ const AuthProvider = ({ children }) => {
                 const loggedUser = {
                     email: currentUser.email
                 }
-                fetch(' https://sweet-doll-server.vercel.app/jwt', {
+                // https://sweet-doll-server.vercel.app
+                fetch('https://sweet-doll-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
