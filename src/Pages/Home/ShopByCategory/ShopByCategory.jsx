@@ -3,8 +3,8 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import ShopCart from './ShopCart';
 
 const ShopByCategory = () => {
-    const [data, setData] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
+    const [data, setData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
