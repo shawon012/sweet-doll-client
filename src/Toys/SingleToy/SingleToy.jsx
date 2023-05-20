@@ -5,12 +5,14 @@ const SingleToy = () => {
     const product = useLoaderData();
     console.log(product)
     const { _id, photoUrl, toyName, sellerName, sellerEmail, price, rating, availableQuantity, detailDescription, category } = product;
-    console.log(detailDescription)
+    console.log(_id, toyName, photoUrl)
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row">
-                    <img src={photoUrl} className="max-w-sm rounded-lg shadow-2xl" />
+                    <div>
+                        <img src={photoUrl} className="max-w-sm rounded-lg shadow-2xl" />
+                    </div>
                     <div>
                         <h1 className="text-5xl font-bold">{toyName}</h1>
                         <h1 className="text-2xl ">Seller Name: {sellerName}</h1>
