@@ -1,8 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Navigate, useLocation } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const ToyRow = ({ row, index }) => {
     const { _id, photoUrl, toyName, sellerName, sellerEmail, price, rating, availableQuantity, detailDescription, category } = row;
+    const {user} = useContext(AuthContext);
+    const location = useLocation();
     return (
 
         <tr>
@@ -24,7 +27,15 @@ const ToyRow = ({ row, index }) => {
             <td>{category}</td>
             <td>{price}</td>
             <td>{availableQuantity}</td>
-            <th><Link to={`${_id}`}><button className='btn btn-info'>View More</button></Link></th>
+            {
+                user?(
+                    <th><Link to={`${_id}`}><button className='btn btn-info'>View More</button></Link></th>
+                ) : (
+                    <th><Link state={{from: location}} to="/login" replace><button  className='btn btn-info'>View More</button></Link></th>
+                )
+            }
+            
+           
         </tr>
 
     );
