@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import ShopCart from './ShopCart';
 
 const ShopByCategory = () => {
     const [data, setData] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await fetch('https://sweet-doll-server.vercel.app/products');
-            const jsonData = await response.json();
-            setData(jsonData);
-          } catch (error) {
-            console.log('Error fetching data:', error);
-          }
+            try {
+                const response = await fetch('https://sweet-doll-server.vercel.app/products');
+                const jsonData = await response.json();
+                setData(jsonData);
+            } catch (error) {
+                console.log('Error fetching data:', error);
+            }
         };
-      
+
         fetchData();
-      }, []);
+    }, []);
     console.log(data)
     const babyDoll = data.filter(item => item.category === "babyDolls");
     const americanGirlDoll = data.filter(item => item.category === "americanGirlDolls");
@@ -44,13 +45,25 @@ const ShopByCategory = () => {
                     </TabList>
 
                     <TabPanel>
-                        <div>Tab 1 content</div>
+                        <div className='flex justify-around pt-8 pb-8'>
+                            {barbieDoll.map(item => (
+                                <ShopCart key={item._id} item={item} />
+                            ))}
+                        </div>
                     </TabPanel>
                     <TabPanel>
-                        <div>Tab 2 content</div>
+                        <div className='flex justify-around pt-8 pb-8'>
+                            {americanGirlDoll.map(item => (
+                                <ShopCart key={item._id} item={item} />
+                            ))}
+                        </div>
                     </TabPanel>
                     <TabPanel>
-                        <div>Tab 3 content</div>
+                        <div className='flex justify-around pt-8 pb-8'>
+                            {babyDoll.map(item => (
+                                <ShopCart key={item._id} item={item} />
+                            ))}
+                        </div>
                     </TabPanel>
                 </Tabs>
             </div>
@@ -60,3 +73,7 @@ const ShopByCategory = () => {
 };
 
 export default ShopByCategory;
+
+
+
+
