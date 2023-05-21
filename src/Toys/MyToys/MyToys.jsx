@@ -45,7 +45,7 @@ const MyToys = () => {
         if (proceed) {
             fetch(`https://sweet-doll-server.vercel.app/products/${id}`, {
                 method: 'DELETE'
-            })
+            })  
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
