@@ -1,13 +1,20 @@
-import React from 'react';
+import Aos from 'aos';
+import React, { useEffect } from 'react';
 
 const BestSellingToys = () => {
+    useEffect(() => {
+        Aos.init({
+          duration: 800, // Animation duration
+          once: true, // Only animate elements once
+        });
+      }, []);
     return (
         <div className=' md:mt-6 md:pb-7 md:bg-amber-100 md:hover:bg-lime-100'>
             <div>
-                <h3 className="text-center text-7xl  pt-8 pb-8 hover:text-cyan-800">Best Selling Toys</h3>
+                <h3 data-aos="fade-up" className="text-center text-7xl  pt-8 pb-8 hover:text-cyan-800">Best Selling Toys</h3>
             </div>
             <div className='flex md:justify-around flex-col md:flex-row gap-3'>
-                <div className="md:card md:w-96 bg-base-100 shadow-xl">
+                <div data-aos="fade-up" className="md:card md:w-96 bg-base-100 shadow-xl">
                     <div className="md:card-body">
                         <h2 className="md:card-title">Fashionista Barbie</h2>
                         <p>The Fashionista Barbie doll is a stylish and trendy addition to any doll collection. It comes with a variety of fashionable outfits and accessories, allowing for endless mix-and-match fun. With her diverse styles and body types, this Barbie doll promotes inclusivity and self-expression.</p>

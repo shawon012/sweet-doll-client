@@ -4,6 +4,7 @@ import Gallery from '../Gallery/Gallery';
 import ShopByCategory from '../ShopByCategory/ShopByCategory';
 import BestSellingToys from '../BestSellingToys/BestSellingToys';
 import CustomerfeedBack from '../CustomerfeedBack/CustomerfeedBack';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     return (
