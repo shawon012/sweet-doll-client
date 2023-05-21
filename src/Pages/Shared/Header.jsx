@@ -11,7 +11,7 @@ const Header = () => {
             .catch(error => console.log(error));
     }
     return (
-        <div className="navbar  flex justify-between align-middle pl-11 pr-11 bg-red-100">
+        <div className="navbar flex flex-col md:flex-row md:justify-between align-middle md:pl-11 md:pr-11 bg-red-100">
             <div >
                 <div ><img className='h-16 w-full' src={unicorn} alt="" /></div>
                 <div><a className="btn btn-ghost normal-case text-xl">UToy</a></div>
@@ -21,7 +21,7 @@ const Header = () => {
                 <Link to='/products'><div className="btn btn-ghost normal-case text-xl"><h3>All Toys</h3></div></Link>
                 {user ?
                     (
-                    <div className='gap-3'>
+                    <div className='md:gap-3 flex'>
                         <Link to='/mytoys'><div className="btn btn-ghost normal-case text-xl"><h3>My Toys</h3></div></Link>
                         <Link to='/addProduct'><div className="btn btn-ghost normal-case text-xl"><h3>Add A Toy</h3></div></Link>
                     </div>
@@ -30,9 +30,9 @@ const Header = () => {
                         <div></div>
                     )
                 }
-                <Link to='/blogs'><div className="btn btn-ghost normal-case text-xl"><h3>Blog</h3></div></Link>
+                <Link to='/blogs'><div className="md:btn md:btn-ghost normal-case md:text-xl"><h3>Blog</h3></div></Link>
             </div>
-            <div >
+            <div className='pt-8 md:pt-0' >
                 <div>
                     {user ? (
                         
@@ -44,7 +44,7 @@ const Header = () => {
                         </div>
                     ) :
                         (
-                            <Link to='/login'><div><button className='btn btn-primary'>LogIn</button></div></Link>
+                            <Link to='/login'><div><button className='btn btn-primary hidden sm:block'>LogIn</button></div></Link>
                         )
                     }
 

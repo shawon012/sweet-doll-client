@@ -34,9 +34,9 @@ const Gallery = () => {
         : [img1, img2, img3, img4, img5, img6];
 
     return (
-        <div className="bg-orange-200">
+        <div className="bg-orange-100 hover:bg-green-300">
             <div>
-                <h3 className="text-center text-9xl pt-8 pb-8">Gallery</h3>
+                <h3 className="text-center md:text-9xl text-4xl pt-8 pb-8">Gallery</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ps-11 pr-11" >
                 {imageSet.map((image, index) => (

@@ -32,9 +32,9 @@ const ShopByCategory = () => {
 
         <div className='hover:bg-blue-200'>
             <div>
-                <h3 className="text-center text-7xl  pt-8 pb-8">Shop By Category</h3>
+                <h3 className="text-center text-7xl  md:pt-8 pb-8">Shop By Category</h3>
             </div>
-            <div className='ps-11 pr-11'>
+            <div className='md:ps-11 md:pr-11'>
                 <Tabs selectedIndex={activeTab} onSelect={handleTabClick} >
                     <TabList className="tabs tabs-boxed flex justify-between border">
 
@@ -45,21 +45,21 @@ const ShopByCategory = () => {
                     </TabList>
 
                     <TabPanel>
-                        <div className='flex justify-around pt-8 pb-8'>
+                        <div className='flex md:justify-around md:flex-row flex-col pt-8 pb-8'>
                             {barbieDoll.map(item => (
                                 <ShopCart key={item._id} item={item} />
                             ))}
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='flex justify-around pt-8 pb-8'>
+                        <div className='flex md:justify-around md:flex-row flex-col pt-8 pb-8'>
                             {americanGirlDoll.map(item => (
                                 <ShopCart key={item._id} item={item} />
                             ))}
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='flex justify-around pt-8 pb-8'>
+                        <div className='flex md:justify-around md:flex-row flex-col pt-8 pb-8'>
                             {babyDoll.map(item => (
                                 <ShopCart key={item._id} item={item} />
                             ))}

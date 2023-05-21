@@ -5,7 +5,7 @@ const ShopCart = ({ item }) => {
     const { toyName, price, rating, _id, photoUrl } = item;
     console.log(toyName, price, rating, _id, photoUrl)
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card md:w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
                 <img src={photoUrl} alt="Doll" className="rounded-xl" />
             </figure>
