@@ -10,6 +10,7 @@ import MyToys from "../Toys/MyToys/MyToys";
 import Notfound from "../Notfound/Notfound";
 import Blog from "../Toys/Blog/Blog";
 import PrivateRoute from "./PrivateRoute";
+import Update from "../Toys/MyToys/Update";
 
 
 
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
         {
             path: 'products/:id',
             element: <PrivateRoute><SingleToy></SingleToy></PrivateRoute>,
+            loader: ({params}) => fetch(`https://sweet-doll-server.vercel.app/products/${params.id}`)
+        },
+        {
+            path: 'mytoys/updateToy/:id',
+            element: <PrivateRoute><Update></Update></PrivateRoute>,
             loader: ({params}) => fetch(`https://sweet-doll-server.vercel.app/products/${params.id}`)
         },
         {

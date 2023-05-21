@@ -4,8 +4,6 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 const MyToyRow = ({ row, index, handleDelete }) => {
     const { _id, photoUrl, toyName, sellerName, sellerEmail, price, rating, availableQuantity, detailDescription, category } = row;
-    const {user} = useContext(AuthContext);
-    const location = useLocation();
     return (
 
         <tr>
@@ -27,7 +25,7 @@ const MyToyRow = ({ row, index, handleDelete }) => {
             <td>{price}</td>
             <td>{availableQuantity}</td>
             <th><button onClick={() => handleDelete(_id)} className='btn btn-info'>Delete</button></th>
-            <th><button className='btn btn-info'>Update</button></th>
+            <th><Link to={`updateToy/${_id}`}><button className='btn btn-info'>Update</button> </Link></th>
         </tr>
 
     );
